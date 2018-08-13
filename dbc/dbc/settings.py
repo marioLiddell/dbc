@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -135,5 +136,6 @@ MEDIA_URL = '/media/'
 
 django_heroku.settings(locals())
 
-db_from_env = dj_database_url.conf(conn_max_age=500)
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
